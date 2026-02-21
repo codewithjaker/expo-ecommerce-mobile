@@ -49,11 +49,11 @@ Join our community of developers creating universal apps.
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
 
-
 ```js
 npx expo install expo-image
 npm i lucide-react-native
 npm i react-hook-form
 npm i @hookform/resolvers
 npm i zod
+npm i expo-secure-store
 ```
