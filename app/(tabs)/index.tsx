@@ -2,10 +2,11 @@
 import { useRouter } from "expo-router";
 import { Bell, ChevronRight, Search, Star } from "lucide-react-native";
 import React, { useState } from "react";
+
+import { Image } from "expo-image";
 import {
   Dimensions,
   FlatList,
-  Image,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -96,7 +97,6 @@ const productData: Product[] = [
       "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=500&fit=crop&crop=center",
     category: "Watch",
   },
-
   {
     id: "6",
     name: "Emerald Stone Ring",
@@ -277,7 +277,9 @@ const HomeHeader = () => {
     <View className="flex-row justify-between items-center px-4 pt-2 pb-6">
       <View>
         <Text className="text-[#888888] text-sm font-normal">Good Morning</Text>
-        <Text className="text-white text-2xl font-semibold mt-1">Andrew Ainsley</Text>
+        <Text className="text-white text-2xl font-semibold mt-1">
+          Andrew Ainsley
+        </Text>
       </View>
       <View className="flex-row gap-4">
         <TouchableOpacity className="p-2">
@@ -322,14 +324,26 @@ const BannerCarousel = () => {
           style={{ width: width - 32 }}
           className="mx-4 rounded-2xl overflow-hidden"
         >
-          <Image
+          {/* <Image
             source={{ uri: banner.image }}
             className="w-full h-35"
             resizeMode="cover"
+          /> */}
+          <Image
+            source={{ uri: banner.image }}
+            contentFit="cover"
+            style={{
+              width: "100%",
+              height: 160,
+            }}
           />
           <View className="absolute bottom-0 left-0 right-0 p-4 bg-black/60">
-            <Text className="text-white text-xl font-semibold">{banner.title}</Text>
-            <Text className="text-white text-sm opacity-80 mt-1">{banner.subtitle}</Text>
+            <Text className="text-white text-xl font-semibold">
+              {banner.title}
+            </Text>
+            <Text className="text-white text-sm opacity-80 mt-1">
+              {banner.subtitle}
+            </Text>
           </View>
         </View>
       ))}
@@ -349,15 +363,17 @@ const CategoryGrid = () => {
         </TouchableOpacity>
       </View>
 
-      <View className="flex-row flex-wrap px-2">
-        {categories.map((category, index) => (
+      <View className="flex-row flex-wrap px-4">
+        {categories.map((category) => (
           <TouchableOpacity
             key={category.id}
             className="w-1/4 items-center mb-4"
             onPress={() => router.push(`/product/category/${category.id}`)}
           >
-            <Text className="text-4xl mb-2">{category.icon}</Text>
-            <Text className="text-white text-xs font-medium">{category.name}</Text>
+            <Text className="text-3xl mb-2">{category.icon}</Text>
+            <Text className="text-white text-xs font-medium">
+              {category.name}
+            </Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -375,14 +391,24 @@ const ProductGrid = () => {
       className="bg-[#1A1A1A] rounded-2xl p-3"
       onPress={() => router.push(`/product/${item.id}`)}
     >
-      <View className="w-full h-35 rounded-xl overflow-hidden mb-3 relative">
-        <Image
+      {/* <View className="w-full h-35 rounded-xl overflow-hidden mb-3 relative"> */}
+      <View
+        style={{ width: "100%", height: 160 }}
+        className="rounded-xl overflow-hidden mb-3 relative"
+      >
+        {/* <Image
           source={{ uri: item.image }}
           className="w-full h-full"
           resizeMode="cover"
+        /> */}
+        <Image
+          source={{ uri: item.image }}
+          contentFit="cover"
+          style={{ width: "100%", height: "100%" }}
+          transition={200}
         />
         <View className="absolute top-2 right-2 bg-black/70 px-2 py-1 rounded-full">
-          <Text className="text-white text-xs font-semibold">NEW</Text>
+          <Text className="text-white text-[10px] font-semibold">NEW</Text>
         </View>
       </View>
       <Text className="text-white text-sm font-semibold mb-2" numberOfLines={1}>
@@ -391,7 +417,7 @@ const ProductGrid = () => {
       <View className="flex-row justify-between items-center mb-2">
         <View className="flex-row items-center gap-1">
           <Star size={12} color="#FFD700" fill="#FFD700" />
-          <Text className="text-yellow-400 text-xs">{item.rating}</Text>
+          <Text className="text-[#FFD700] text-xs">{item.rating}</Text>
         </View>
         <Text className="text-[#888888] text-xs">{item.sold}</Text>
       </View>
@@ -439,8 +465,8 @@ const ProductGrid = () => {
         keyExtractor={(item) => item.id}
         numColumns={2}
         scrollEnabled={false}
-        columnWrapperClassName="justify-between mb-4"
-        contentContainerClassName="px-4"
+        columnWrapperStyle={{ justifyContent: "space-between" }}
+        contentContainerStyle={{ paddingHorizontal: 16 }}
       />
     </View>
   );
@@ -450,10 +476,7 @@ const ProductGrid = () => {
 export default function HomeScreen() {
   return (
     <SafeAreaView className="flex-1 bg-[#0F0F0F]" edges={["top"]}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        className="flex-1"
-      >
+      <ScrollView showsVerticalScrollIndicator={false} className="flex-1">
         <HomeHeader />
         <BannerCarousel />
         <CategoryGrid />
