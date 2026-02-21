@@ -53,4 +53,7 @@ Join our community of developers creating universal apps.
 ```js
 npx expo install expo-image
 npm i lucide-react-native
+npm i react-hook-form
+npm i @hookform/resolvers
+npm i zod
 ```
