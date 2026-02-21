@@ -111,7 +111,7 @@ const menuSections: { title: string; items: MenuItem[] }[] = [
     title: "Settings",
     items: [
       { id: "7", title: "Notifications", icon: Bell, route: "/notifications" },
-      { id: "8", title: "Privacy & Security", icon: Shield, route: "/privacy" },
+      { id: "8", title: "Privacy & Security", icon: Shield, route: "/privacy-security" },
       { id: "9", title: "Language", icon: Globe, route: "/language" },
       { id: "10", title: "Dark Mode", icon: Moon },
       {
